@@ -17,6 +17,9 @@ defmodule Arc.Ecto.Type do
   def cast(definition, args) do
     case definition.store(args) do
       {:ok, file} -> {:ok, %{file_name: file, updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now, :second)}}
+      {:error, error} when is_atom(error) ->
+        Logger.error(inspect(error))
+        {:error, message: Atom.to_string(error)}
       error ->
         Logger.error(inspect(error))
         :error
