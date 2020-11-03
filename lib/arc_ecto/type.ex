@@ -5,11 +5,11 @@ defmodule Arc.Ecto.Type do
   def type, do: :string
 
   @filename_with_timestamp ~r{^(.*)\?(\d+)$}
-  
+
   def cast(definition, %{file_name: file, updated_at: updated_at}) do
     cast(definition, %{"file_name" => file, "updated_at" => updated_at})
   end
-  
+
   def cast(_definition, %{"file_name" => file, "updated_at" => updated_at}) do
     {:ok, %{file_name: file, updated_at: updated_at}}
   end
@@ -61,4 +61,8 @@ defmodule Arc.Ecto.Type do
   def dump(definition, %{"file_name" => file_name, "updated_at" => updated_at}) do
     dump(definition, %{file_name: file_name, updated_at: updated_at})
   end
+
+  def embed_as(_), do: :self
+
+  def equal?(term1, term2), do: term1 == term2
 end
