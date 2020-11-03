@@ -14,6 +14,8 @@ defmodule Arc.Ecto.Type do
     {:ok, %{file_name: file, updated_at: updated_at}}
   end
 
+  def cast(_definition, {%{file_name: file_name, updated_at: updated_at}, _}), do: {:ok, %{file_name: file_name, updated_at: updated_at}}
+
   def cast(definition, args) do
     case definition.store(args) do
       {:ok, file} -> {:ok, %{file_name: file, updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now, :second)}}
