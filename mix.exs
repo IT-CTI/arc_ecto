@@ -19,7 +19,7 @@ defmodule Arc.Ecto.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger, :arc]]
+    [applications: [:logger, :arc, :ecto]]
   end
 
   # Specifies which paths to compile per environment.
@@ -44,7 +44,8 @@ defmodule Arc.Ecto.Mixfile do
       {:arc,  "~> 0.11.0"},
       {:ecto, ">= 2.1.0"},
       {:mock, "~> 0.3.3", only: :test},
-      {:ex_doc, ">= 0.0.0", only: :dev}
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      # {:ssl_verify_fun, "~> 1.1.7", manager: :rebar3, override: true}
     ]
   end
 end
