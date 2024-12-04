@@ -22,6 +22,8 @@ defmodule Arc.Ecto.Type do
       {:error, error} when is_atom(error) ->
         Logger.error(inspect(error))
         {:error, message: Atom.to_string(error)}
+      {:error, error, reason} when is_atom(error) and is_binary(reason)->
+        {:error, message: Atom.to_string(error), reason: reason}
       error ->
         Logger.error(inspect(error))
         :error
